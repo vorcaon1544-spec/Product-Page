@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JDM Legends</title>
+</head>
+<body style="background:#111; color:#fff; font-family:Arial">
+  <h1>JDM Legends</h1>
+  <table border="1" cellpadding="10" width="100%">
+    <tr style="background:#1e3a8a">
+      <td><a href="https://en.wikipedia.org/wiki/Nissan_Skyline_GT-R"><img id="r34" width="220" alt="Silver Nissan Skyline GT-R R34 coupe"></a></td>
+      <td>Nissan Skyline GT-R R34</td>
+      <td><a style="color:#fff" href="detail.html?car=r34">Details</a></td>
+    </tr>
+    <tr style="background:#b45309">
+      <td><a href="https://en.wikipedia.org/wiki/Toyota_MR2"><img id="mr2" width="220" alt="Toyota MR2 mid-engine two-seat sports car"></a></td>
+      <td>Toyota MR2</td>
+      <td><a style="color:#fff" href="detail.html?car=mr2">Details</a></td>
+    </tr>
+    <tr style="background:#166534">
+      <td><a href="https://en.wikipedia.org/wiki/Toyota_Supra_(A80)"><img id="supra" width="220" alt="Toyota Supra A80 sports coupe with rear wing"></a></td>
+      <td>Toyota Supra A80</td>
+      <td><a style="color:#fff" href="detail.html?car=supra">Details</a></td>
+    </tr>
+    <tr style="background:#991b1b">
+      <td><a href="https://en.wikipedia.org/wiki/Mazda_RX-7"><img id="rx7" width="220" alt="Mazda RX-7 rotary-powered sports car"></a></td>
+      <td>Mazda RX-7 FD</td>
+      <td><a style="color:#fff" href="detail.html?car=rx7">Details</a></td>
+    </tr>
+    <tr style="background:#6b21a8">
+      <td><a href="https://en.wikipedia.org/wiki/Honda_NSX_(first_generation)"><img id="nsx" width="220" alt="Honda NSX first-generation mid-engine supercar"></a></td>
+      <td>Honda NSX</td>
+      <td><a style="color:#fff" href="detail.html?car=nsx">Details</a></td>
+    </tr>
+  </table>
+
+  <script>
+    const wiki = {
+      r34: "Nissan_Skyline_GT-R",
+      mr2: "Toyota_MR2",
+      supra: "Toyota_Supra_(A80)",
+      rx7: "Mazda_RX-7",
+      nsx: "Honda_NSX_(first_generation)"
+    };
+    document.querySelectorAll("img").forEach(function (img) {
+      fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + wiki[img.id])
+        .then(function (r) { return r.json(); })
+        .then(function (d) { img.src = d.thumbnail.source; });
+    });
+  </script>
+</body>
+</html>
